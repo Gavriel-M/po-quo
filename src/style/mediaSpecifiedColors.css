@@ -1,0 +1,270 @@
+.music-quote .keyed-by-header {
+  background-color: #e2c275;
+}
+
+.vg-quote .keyed-by-header {
+  background-color: #60ab9a;
+  color: #fff;
+}
+
+.ctv-quote .keyed-by-header {
+  background-color: #ec8f6a;
+  color: #fff;
+}
+
+.proverbs-quote .keyed-by-header {
+  background-color: #6a7fdc;
+  color: #fff;
+}
+
+.literature-quote .keyed-by-header {
+  background-color: #b96b9f;
+  color: #fff;
+}
+
+.default-quote .keyed-by-header {
+  background-color: #c08485;
+  color: #fff;
+}
+
+.music-quote .expand-btn {
+  background-color: #e2c275;
+}
+
+.vg-quote .expand-btn {
+  background-color: #60ab9a;
+  color: #fff;
+}
+
+.ctv-quote .expand-btn {
+  background-color: #ec8f6a;
+  color: #fff;
+}
+
+.proverbs-quote .expand-btn {
+  background-color: #6a7fdc;
+  color: #fff;
+}
+
+.literature-quote .expand-btn {
+  background-color: #b96b9f;
+  color: #fff;
+}
+
+.default-quote .expand-btn {
+  background-color: #c08485;
+  color: #fff;
+}
+
+.music-quote .expand-popup-header {
+  background-color: #e2c275;
+  color: #000;
+}
+
+.vg-quote .expand-popup-header {
+  background-color: #60ab9a;
+  color: #fff;
+}
+
+.ctv-quote .expand-popup-header {
+  background-color: #ec8f6a;
+  color: #fff;
+}
+
+.proverbs-quote .expand-popup-header {
+  background-color: #6a7fdc;
+  color: #fff;
+}
+
+.literature-quote .expand-popup-header {
+  background-color: #b96b9f;
+  color: #fff;
+}
+
+.default-quote .expand-popup-header {
+  background-color: #c08485;
+  color: #fff;
+}
+
+.music-quote .popup-sec-header {
+  background-color: #e2c275;
+  color: #000;
+}
+
+.vg-quote .popup-sec-header {
+  background-color: #60ab9a;
+  color: #fff;
+}
+
+.ctv-quote .popup-sec-header {
+  background-color: #ec8f6a;
+  color: #fff;
+}
+
+.proverbs-quote .popup-sec-header {
+  background-color: #6a7fdc;
+  color: #fff;
+}
+
+.literature-quote .popup-sec-header {
+  background-color: #b96b9f;
+  color: #fff;
+}
+
+.default-quote .popup-sec-header {
+  background-color: #c08485;
+  color: #fff;
+}
+
+/*  */
+
+.music-quote .user-quote-header {
+  background-color: #e2c275;
+}
+
+.vg-quote .user-quote-header {
+  background-color: #60ab9a;
+  color: #fff;
+}
+
+.ctv-quote .user-quote-header {
+  background-color: #ec8f6a;
+  color: #fff;
+}
+
+.proverbs-quote .user-quote-header {
+  background-color: #6a7fdc;
+  color: #fff;
+}
+
+.literature-quote .user-quote-header {
+  background-color: #b96b9f;
+  color: #fff;
+}
+
+.default-quote .user-quote-header {
+  background-color: #c08485;
+  color: #fff;
+}
+/*  */
+.music-quote .user-quote-edit-btn {
+  background-color: #e2c275;
+}
+
+.vg-quote .user-quote-edit-btn {
+  background-color: #60ab9a;
+  color: #fff;
+}
+
+.ctv-quote .user-quote-edit-btn {
+  background-color: #ec8f6a;
+  color: #fff;
+}
+
+.proverbs-quote .user-quote-edit-btn {
+  background-color: #6a7fdc;
+  color: #fff;
+}
+
+.literature-quote .user-quote-edit-btn {
+  background-color: #b96b9f;
+  color: #fff;
+}
+
+.default-quote .user-quote-edit-btn {
+  background-color: #c08485;
+  color: #fff;
+}
+
+/*  */
+
+.music-quote .edit-quote-update-btn {
+  background-color: #e2c275;
+}
+
+.vg-quote .edit-quote-update-btn {
+  background-color: #60ab9a;
+  color: #fff;
+}
+
+.ctv-quote .edit-quote-update-btn {
+  background-color: #ec8f6a;
+  color: #fff;
+}
+
+.proverbs-quote .edit-quote-update-btn {
+  background-color: #6a7fdc;
+  color: #fff;
+}
+
+.literature-quote .edit-quote-update-btn {
+  background-color: #b96b9f;
+  color: #fff;
+}
+
+.default-quote .edit-quote-update-btn {
+  background-color: #c08485;
+  color: #fff;
+}
+
+/*  */
+
+.music-quote .edit-quote-header {
+  background-color: #e2c275;
+}
+
+.vg-quote .edit-quote-header {
+  background-color: #60ab9a;
+  color: #fff;
+}
+
+.ctv-quote .edit-quote-header {
+  background-color: #ec8f6a;
+  color: #fff;
+}
+
+.proverbs-quote .edit-quote-header {
+  background-color: #6a7fdc;
+  color: #fff;
+}
+
+.literature-quote .edit-quote-header {
+  background-color: #b96b9f;
+  color: #fff;
+}
+
+.default-quote .edit-quote-header {
+  background-color: #c08485;
+  color: #fff;
+}
+
+/*  */
+
+.music-quote .delete-quote-btn {
+  background-color: #e2c275;
+}
+
+.vg-quote .delete-quote-btn {
+  background-color: #60ab9a;
+  color: #fff;
+}
+
+.ctv-quote .delete-quote-btn {
+  background-color: #ec8f6a;
+  color: #fff;
+}
+
+.proverbs-quote .delete-quote-btn {
+  background-color: #6a7fdc;
+  color: #fff;
+}
+
+.literature-quote .delete-quote-btn {
+  background-color: #b96b9f;
+  color: #fff;
+}
+
+.default-quote .delete-quote-btn {
+  background-color: #c08485;
+  color: #fff;
+}

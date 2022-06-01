@@ -1,0 +1,13 @@
+.reset-head{
+    
+    width: 50vw;
+    margin: 0 auto 20px auto;
+    padding: 10px;
+}
+
+.pw-reset{
+    width: 80vw;
+    margin: 50px auto;
+    padding: 50px 10px 50px 10px;
+    background-color: #96C7C1;
+}

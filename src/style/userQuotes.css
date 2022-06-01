@@ -1,0 +1,142 @@
+.my-quotes-page {
+  padding: 80px 12px 0 12px;
+  min-height: calc(100vh - 80px);
+  background: url(../images/check-vector.svg) no-repeat;
+}
+
+.my-quotes-box {
+  position: relative;
+  max-width: 1620px;
+  min-height: 700px;
+  background-color: #fff;
+  border: 4px solid black;
+  box-shadow: 5px 5px 0 black;
+  border-radius: 8px;
+  padding: 80px 8px 8px 8px;
+  font-size: 48px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.my-quotes-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.my-quotes-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  padding-top: 8px;
+  border-bottom: 4px solid black;
+  border-radius: 4px 4px 0 0;
+  background-color: #6a9f98;
+  justify-content: center;
+}
+
+.my-quotes-header h2 {
+  font-size: 48px;
+  align-self: center;
+}
+
+.created-at {
+}
+
+.user-quote-container {
+  word-wrap: break-word;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.user-quote-box {
+  position: relative;
+  width: 480px;
+  height: 360px;
+  background-color: #fff;
+  border: 4px solid black;
+  box-shadow: 5px 5px 0 black;
+  border-radius: 8px;
+  padding: 80px 4px 4px 4px;
+  font-size: 48px;
+  margin: 12px;
+}
+
+.user-quote-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  padding-top: 8px;
+  border-bottom: 4px solid black;
+  border-radius: 4px 4px 0 0;
+  justify-content: center;
+}
+
+.user-quote-header h3 {
+  font-size: 48px;
+  align-self: center;
+}
+
+.user-quote-flex {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.user-quote-flex h4 {
+  font-size: 40px;
+}
+
+.user-quote-edit-btn {
+  position: absolute;
+  bottom: -22px;
+  right: -22px;
+  font-size: 36px;
+  width: 100px;
+  height: 56px;
+  color: #000;
+  border: 4px solid black;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 black;
+  transition: 0.1s;
+}
+
+.user-quote-edit-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 black;
+  filter: brightness(108%);
+}
+
+
+@media only screen and (max-width: 450px) {
+  .my-quotes-box{
+    padding: 80px 0 12px 0;
+  }
+  .user-quote-box{
+    margin: 12px 0 18px 0;
+    border-right: none;
+    border-left: none;
+    border-radius: 6px;
+ }
+ .user-quote-header h3{
+   font-size: 40px;
+ }
+ .user-quote-flex h4{
+   font-size: 32px;
+ }
+ .user-quote-edit-btn{
+   right: calc(50% - 50px);
+ }
+}
