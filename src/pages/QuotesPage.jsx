@@ -5,8 +5,7 @@ import QuoteCardComponent from "../components/QuoteCardComponent";
 
 import loadSvg from "../images/Loading.svg";
 import axios from "axios";
-import "../components/quoteCard2.css";
-import "../style/quotes.css"
+import "../style/quotes.css";
 
 const QuotesPage = () => {
   const [quotesArr, setQuotesArr] = useState([]);

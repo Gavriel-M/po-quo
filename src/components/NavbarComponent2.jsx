@@ -3,15 +3,37 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/authSlice.js";
 
 import pqLogo from "../images/pq-logo.png";
-import "../style/navbar.css"
+import "../style/navbar.css";
+import { useEffect, useState } from "react";
 
 const NavbarComponent = () => {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const dispatch = useDispatch();
+  const [mobileNav, setMobileNav] = useState(false);
+  const [mobileNavClass, setMobileNavClass] = useState("");
+
+  useEffect(() => {
+    if (mobileNav) {
+      setMobileNavClass("mobile-navbar-active");
+    } else {
+      setMobileNavClass("");
+    }
+  }, [mobileNav]);
 
   const handleLogout = () => {
     dispatch(logout());
   };
+
+  const handleMobileNav = () => {
+    setMobileNav(!mobileNav);
+  };
+
+  const handleMobileNavRouting = () => {
+    if (mobileNav) {
+      setMobileNav(!mobileNav);
+    }
+  };
+
   return (
     <nav className="cust-navbar">
       <NavLink className="pq-logo" to="/">
@@ -21,10 +43,20 @@ const NavbarComponent = () => {
           alt="Po-Quo Logo"
         />
       </NavLink>
-      <div className="">
+      <div className={mobileNavClass}>
+        <button
+          type="button"
+          className="mobile-nav-btn"
+          onClick={handleMobileNav}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <ul className="navbar-flex">
           <li className="nav-item">
             <NavLink
+              onClick={handleMobileNavRouting}
               className="navlink"
               aria-current="page"
               to="/home"
@@ -34,9 +66,22 @@ const NavbarComponent = () => {
             </NavLink>
           </li>
 
+          <li className="nav-item">
+            <NavLink
+              onClick={handleMobileNavRouting}
+              className="navlink"
+              aria-current="page"
+              to="/about"
+              activeclassname="current-link"
+            >
+              About
+            </NavLink>
+          </li>
+
           {loggedIn && (
             <li className="nav-item">
               <NavLink
+                onClick={handleMobileNavRouting}
                 className="navlink"
                 aria-current="page"
                 to="/quotes"
@@ -50,6 +95,7 @@ const NavbarComponent = () => {
           {loggedIn && (
             <li className="nav-item">
               <NavLink
+                onClick={handleMobileNavRouting}
                 className="navlink"
                 aria-current="page"
                 to="/addquote"
@@ -63,6 +109,7 @@ const NavbarComponent = () => {
           {loggedIn && (
             <li className="nav-item">
               <NavLink
+                onClick={handleMobileNavRouting}
                 className="navlink"
                 aria-current="page"
                 to="/userquotes"
@@ -76,6 +123,7 @@ const NavbarComponent = () => {
           {loggedIn && (
             <li className="nav-item">
               <NavLink
+                onClick={handleMobileNavRouting}
                 className="navlink"
                 aria-current="page"
                 to="/profile"
@@ -89,6 +137,7 @@ const NavbarComponent = () => {
           {!loggedIn && (
             <li className="nav-item">
               <NavLink
+                onClick={handleMobileNavRouting}
                 className="navlink"
                 aria-current="page"
                 to="/login"
@@ -102,6 +151,7 @@ const NavbarComponent = () => {
           {!loggedIn && (
             <li className="nav-item ">
               <NavLink
+                onClick={handleMobileNavRouting}
                 className="navlink"
                 aria-current="page"
                 to="/signup"

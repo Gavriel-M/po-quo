@@ -1,7 +1,8 @@
 .login-page {
   padding: 80px 42px 0 12px;
   min-height: calc(100vh - 80px);
-  background: url(../images/login-vector.svg) no-repeat;overflow: hidden;
+  background: url(../images/login-vector.svg) no-repeat;
+  overflow: hidden;
 }
 
 .login-box {
@@ -50,7 +51,7 @@
   margin-bottom: 16px;
 }
 
-.password-row{
+.password-row {
   display: flex;
   flex-direction: column;
 }
@@ -144,7 +145,6 @@
 
 .blob-container {
   position: relative;
-
 }
 
 .blob {
@@ -154,37 +154,40 @@
 
   width: 840px;
   height: 240px;
-  
+
   left: 240px;
   top: -80px;
   z-index: 1;
 }
 
-
-
 @media only screen and (max-width: 560px) {
   .side-line {
-  display: none;
-}
-  .login-box{
+    display: none;
+  }
+  .login-box {
     margin: 0 auto;
     padding: 80px 0 0 12px;
   }
-  .blob{
+  .blob {
     left: 79px;
     top: -600px;
   }
 }
 
 @media only screen and (max-width: 475px) {
-.forgot-pw {
-  
-  right: -40px;
-  bottom: 48px;
+  .forgot-pw {
+    right: -40px;
+    bottom: 48px;
+  }
+
+  .login-box form {
+    font-size: 36px;
+  }
 }
 
-.login-box form{
-  font-size: 36px;
-}
-
+@media only screen and (max-width: 1270px) {
+  .login-page {
+    padding: 40px 42px 0 12px;
+    min-height: calc(100vh - 40px);
+  }
 }
