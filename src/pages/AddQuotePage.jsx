@@ -3,10 +3,10 @@ import addImage from "../images/add-a-quote.png";
 import quoteSchema from "../validation/quote.validation";
 import Joi from "joi-browser";
 import { useNavigate } from "react-router-dom";
+import ErrorPopupComponent from "../components/ErrorPopupComponent";
 
 import jwt from "jwt-decode";
 
-/* import "../components/style.css"; */
 import "../style/select.css";
 import "../style/addQuote.css";
 import axios from "axios";
@@ -23,12 +23,15 @@ const AddQuotePage = (props) => {
   const user = jwt(token);
 
   // error
-  const [mediaTypeErr, setMediaTypeErr] = useState("");
+
+  const [trigger, setTrigger] = useState(false);
+  const [addQuoteErr, setAddQuoteErr] = useState("");
+  /* const [mediaTypeErr, setMediaTypeErr] = useState("");
   const [languageErr, setLanguageErr] = useState("");
   const [quoteErr, setQuoteErr] = useState("");
   const [keyedByErr, setKeyedByErr] = useState("");
   const [linkErr, setLinkErr] = useState("");
-  const [sourceErr, setSourceErr] = useState("");
+  const [sourceErr, setSourceErr] = useState(""); */
 
   const handleKeyedBy = (event) => {
     setKeyedBy(event.target.value);
@@ -56,21 +59,25 @@ const AddQuotePage = (props) => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-
-    setMediaTypeErr("");
+    setAddQuoteErr("");
+    /* setMediaTypeErr("");
     setLanguageErr("");
     setQuoteErr("");
     setLinkErr("");
     setSourceErr("");
-    setKeyedByErr("");
+    setKeyedByErr(""); */
 
     const createdBy = user.userName;
 
     if (mediaType === "Media type") {
-      return setMediaTypeErr("please select the media type");
+      setAddQuoteErr("please select a media type");
+      setTrigger(true);
+      return;
     }
     if (language === "Language") {
-      return setLanguageErr("please select a language");
+      setAddQuoteErr("please select a language");
+      setTrigger(true);
+      return;
     }
 
     const validatedValue = Joi.validate(
@@ -89,25 +96,25 @@ const AddQuotePage = (props) => {
 
     const { error } = validatedValue;
     if (error) {
-      console.log(error.details);
       switch (error.details[0].context.label) {
         case "quote":
-          setQuoteErr("Quote field must contain at least 2 characters");
+          setAddQuoteErr("Quote field must contain at least 2 characters");
           console.log("Quote field must contain at least 2 characters");
           break;
         case "keyedBy":
-          setKeyedByErr("Keyed-by field is mendatory");
+          setAddQuoteErr("Keyed-by field is mendatory");
           console.log("Keyed-by field is mendatory");
           break;
         case "source":
-          setSourceErr("Source field must contain at least 2 characters");
+          setAddQuoteErr("Source field must contain at least 2 characters");
           console.log("Source field must contain at least 2 characters");
           break;
         case "link":
-          setLinkErr("Link field is mendatory");
+          setAddQuoteErr("Link field is mendatory");
           console.log("Link field is mendatory");
           break;
       }
+      setTrigger(true);
       return;
     } else {
       console.log("Joi ok");
@@ -129,6 +136,8 @@ const AddQuotePage = (props) => {
         .catch((err) => {
           if (err.response) {
             console.log(err.response.data);
+            setAddQuoteErr("unknown error, Please try again.")
+            setTrigger(true);
           }
         });
     }
@@ -153,21 +162,21 @@ const AddQuotePage = (props) => {
                 value={quote}
                 onChange={handleQuote}
               />
-              {quoteErr ? (
+              {/* {quoteErr ? (
                 <span className="cust-error">{quoteErr}</span>
               ) : (
                 <br />
-              )}
+              )} */}
             </div>
 
             <div className="add-quote-field">
-              {mediaTypeErr ? (
+              {/* {mediaTypeErr ? (
                 <span className="cust-error">{mediaTypeErr}</span>
               ) : (
                 <span>
                   <br />
                 </span>
-              )}
+              )} */}
               <div className="box">
                 <div className="select">
                   <select
@@ -188,13 +197,13 @@ const AddQuotePage = (props) => {
             </div>
 
             <div className="add-quote-field">
-              {languageErr ? (
+              {/* {languageErr ? (
                 <span className="cust-error">{languageErr}</span>
               ) : (
                 <span>
                   <br />
                 </span>
-              )}
+              )} */}
 
               <div className="box">
                 <div className="select">
@@ -203,7 +212,6 @@ const AddQuotePage = (props) => {
                     id="format"
                     defaultValue={language}
                     onChange={handleLanguage}
-                    /* defaultValue={language} */
                   >
                     <option disabled>Language</option>
                     <option value="english">English</option>
@@ -226,11 +234,11 @@ const AddQuotePage = (props) => {
                 value={keyedBy}
                 onChange={handleKeyedBy}
               />
-              {keyedByErr ? (
+              {/* {keyedByErr ? (
                 <span className="cust-error">{keyedByErr}</span>
               ) : (
                 <br />
-              )}
+              )} */}
             </div>
 
             <div className="add-quote-field">
@@ -245,11 +253,11 @@ const AddQuotePage = (props) => {
                 value={source}
                 onChange={handleSource}
               />
-              {sourceErr ? (
+              {/* {sourceErr ? (
                 <span className="cust-error">{sourceErr}</span>
               ) : (
                 <br />
-              )}
+              )} */}
             </div>
 
             <div className="add-quote-field">
@@ -263,7 +271,7 @@ const AddQuotePage = (props) => {
                 value={link}
                 onChange={handleLink}
               />
-              {linkErr ? <span className="cust-error">{linkErr}</span> : <br />}
+              {/* {linkErr ? <span className="cust-error">{linkErr}</span> : <br />} */}
             </div>
 
             <div className="add-quote-btn-container">
@@ -272,12 +280,11 @@ const AddQuotePage = (props) => {
           </div>
         </form>
       </div>
+      <ErrorPopupComponent trigger={trigger} setTrigger={setTrigger}>
+        {addQuoteErr}
+      </ErrorPopupComponent>
     </div>
   );
 };
 
 export default AddQuotePage;
-
-/* 
-
-*/

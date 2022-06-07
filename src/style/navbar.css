@@ -51,14 +51,6 @@
   box-shadow: 4px 4px 0 black;
   transition: 0.1s;
 }
-/* 
-.logout-btn{
-    border: none;
-    background-color: #DFD3C3 ;
-    padding: 6px;
-    text-decoration: underline;
-    transition: 0.1s;
-} */
 
 .logout-btn:hover {
   color: #f0ece3;
@@ -67,9 +59,6 @@
   box-shadow: 2px 2px 0 black;
   filter: brightness(108%);
 }
-/* .logout-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-} */
 
 .logout-item {
   margin: 0 14px 0 auto;

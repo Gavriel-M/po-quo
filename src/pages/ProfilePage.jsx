@@ -5,7 +5,7 @@ import QuoteRowComponent from "../components/QuoteRowComponent";
 import loadSvg from "../images/Loading.svg";
 import axios from "axios";
 import Joi from "joi-browser";
-import "../components/style.css";
+import "../style/style.css";
 import "../style/profile.css";
 
 const ProfilePage = () => {

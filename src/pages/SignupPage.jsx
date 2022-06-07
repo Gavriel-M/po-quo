@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import "../components/style.css";
+import "../style/style.css";
 import "../style/signup.css";
 import signupImg from "../images/signup-transp.png";
 
@@ -12,6 +12,7 @@ import Joi from "joi-browser";
 import pqLogo from "../images/transp-po-quo.png";
 
 import signupSchema from "../validation/signup.validation";
+import ErrorPopupComponent from "../components/ErrorPopupComponent";
 import { login, logout, updateToken } from "../store/authSlice";
 
 const SignupPage = () => {
@@ -22,16 +23,10 @@ const SignupPage = () => {
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
   const [creatorAccount, setCreatorAccount] = useState(false);
+  const [trigger, setTrigger] = useState(false);
   const emailRef = useRef(null);
 
-  //errors
-
-  const [firstNameErr, setFirstNameErr] = useState("");
-  const [lastNameErr, setLastNameErr] = useState("");
-  const [userNameErr, setUserNameErr] = useState("");
-  const [emailErr, setEmailErr] = useState("");
-  const [passwordErr, setPasswordErr] = useState("");
-  const [repeatPWErr, setRepeatPWErr] = useState("");
+  const [signupErr, setSignupErr] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -70,13 +65,7 @@ const SignupPage = () => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-
-    setFirstNameErr("");
-    setLastNameErr("");
-    setUserNameErr("");
-    setEmailErr("");
-    setPasswordErr("");
-    setRepeatPWErr("");
+    setSignupErr("");
 
     const validatedValue = Joi.validate(
       {
@@ -96,34 +85,27 @@ const SignupPage = () => {
     if (error) {
       switch (error.details[0].context.label) {
         case "firstName":
-          setFirstNameErr("Please enter a valid name");
-          console.log("Please enter a valid name");
+          setSignupErr("Please enter a valid first name");
           break;
         case "lastName":
-          setLastNameErr("Please enter a valid name");
-          console.log("Please enter a valid name");
+          setSignupErr("Please enter a valid last name");
           break;
         case "userName":
-          setUserNameErr("User name must contain at least 2 characters");
-          console.log("User name must contain at least 2 characters");
+          setSignupErr("User name must contain at least 2 characters");
           break;
         case "email":
-          setEmailErr("Invalid email address");
-          console.log("Invalid email address");
+          setSignupErr("Invalid email address");
           break;
         case "password":
-          setPasswordErr(
-            "Password must contain both lowercase and uppercase letters, as well as a number. and be at least 8 characters long"
-          );
-          console.log(
-            "Password must contain both lowercase and uppercase letters, as well as a number. and be at least 8 characters long"
+          setSignupErr(
+            "Password must contain at least one lowercase character, uppercase character as well as a number. and be 8+ characters long"
           );
           break;
         case "repeatPassword":
-          setRepeatPWErr("The password does not match");
-          console.log("The password does not match");
+          setSignupErr("The passwords does not match");
           break;
       }
+      setTrigger(true);
       dispatch(logout());
     } else {
       console.log("Joi ok");
@@ -149,6 +131,8 @@ const SignupPage = () => {
           if (err.response) {
             console.log(err.response.data);
           }
+          setSignupErr("unknown error, Please try again.");
+          setTrigger(true);
           localStorage.clear();
           dispatch(logout());
         });
@@ -162,18 +146,12 @@ const SignupPage = () => {
           <h2>Sign up</h2>
         </div>
         <form onSubmit={handleOnSubmit} className="signup-form">
-          {/* <span className="vertical-line"></span> */}
           <div className="left-column">
             <div className="signup-item">
               <label className="" htmlFor="firstName">
                 First Name
               </label>
 
-              {firstNameErr ? (
-                <span className="cust-error">{firstNameErr}</span>
-              ) : (
-                <span></span>
-              )}
               <input
                 type="text"
                 id="firstName"
@@ -187,11 +165,6 @@ const SignupPage = () => {
                 Last Name
               </label>
 
-              {lastNameErr ? (
-                <span className="cust-error">{lastNameErr}</span>
-              ) : (
-                <span></span>
-              )}
               <input
                 type="text"
                 id="lastName"
@@ -205,11 +178,6 @@ const SignupPage = () => {
                 User Name
               </label>
 
-              {userNameErr ? (
-                <span className="cust-error">{userNameErr}</span>
-              ) : (
-                <span></span>
-              )}
               <input
                 type="text"
                 id="userName"
@@ -219,18 +187,12 @@ const SignupPage = () => {
               />
             </div>
           </div>
-          {/* <span className="vertical-line"></span> */}
           <div className="right-column">
             <div className="signup-item">
               <label className="" htmlFor="email">
                 Your Email
               </label>
 
-              {emailErr ? (
-                <span className="cust-error">{emailErr}</span>
-              ) : (
-                <span></span>
-              )}
               <input
                 ref={emailRef}
                 type="email"
@@ -245,11 +207,7 @@ const SignupPage = () => {
               <label className="" htmlFor="password">
                 Password
               </label>
-              {passwordErr ? (
-                <span className="cust-error">{passwordErr}</span>
-              ) : (
-                <span></span>
-              )}
+
               <input
                 type="password"
                 id="password"
@@ -264,11 +222,6 @@ const SignupPage = () => {
                 Repeat your password
               </label>
 
-              {repeatPWErr ? (
-                <span className="cust-error">{repeatPWErr}</span>
-              ) : (
-                <span></span>
-              )}
               <input
                 type="password"
                 id="repeatPW"
@@ -296,6 +249,10 @@ const SignupPage = () => {
           </div>
         </form>
       </div>
+
+      <ErrorPopupComponent trigger={trigger} setTrigger={setTrigger}>
+        {signupErr}
+      </ErrorPopupComponent>
     </div>
   );
 };

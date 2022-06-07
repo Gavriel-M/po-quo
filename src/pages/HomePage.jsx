@@ -1,6 +1,6 @@
 import pqimg from "../images/popular-quotes-trsp.png";
 import mobileimg from "../images/popular-quotes-mobile.png";
-import "../components/style.css";
+import "../style/style.css";
 import "../style/home.css";
 import loadSvg from "../images/Loading.svg";
 
@@ -40,7 +40,6 @@ const HomePage = () => {
   }, [loggedIn, ]);
 
   useEffect(() => {
-    console.log(latestQuote);
     if (latestQuote) {
       setLoadedLatest(true);
     }

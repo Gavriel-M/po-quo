@@ -4,7 +4,7 @@ import QuoteRowComponent from "../components/QuoteRowComponent";
 import loadSvg from "../images/Loading.svg";
 import axios from "axios";
 
-import "../components/userQuotes.css";
+
 import "../style/userQuotes.css";
 
 const UserQuotesPage = () => {

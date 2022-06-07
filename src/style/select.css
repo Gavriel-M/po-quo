@@ -11,6 +11,7 @@
   font-family: "Oswald", sans-serif;
   color: #fff;
 }
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -26,9 +27,11 @@ select {
   font-size: 40px;
   font-family: "Oswald", sans-serif;
 }
+
 select::-ms-expand {
   display: none;
 }
+
 .select {
   position: relative;
   display: flex;

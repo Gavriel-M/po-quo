@@ -3,38 +3,28 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import "../style/userQuotes.css";
-import "../style/editQuotePopup.css"
-import "../style/mediaSpecifiedColors.css"
+import "../style/editQuotePopup.css";
+import "../style/mediaSpecifiedColors.css";
 
 import { useEffect, useState } from "react";
 import PopUpComponent from "./PopUpComponent";
 import EditPopUpComponent from "./EditPopUpComponent";
-
 
 const QuoteRowComponent = (props) => {
   const [updatedQuote, setUpdatedQuote] = useState("");
   const [updatedKeyedBy, setUpdatedKeyedBy] = useState("");
   const [updatedCreatedAt, setUpdatedCreatedAt] = useState("");
   const [mtClassName, setMTClassName] = useState("user-quote-box");
-/*   const [updatedLanguage, setUpdatedLanguage] = useState("");
-  const [updatedSource, setUpdatedSource] = useState("");
-  const [updatedLink, setUpdatedLink] = useState("");
-  const [updatedMediaType, setUpdatedMediaType] = useState(""); */
 
-    
-    const [trigger, setTrigger] = useState(false);
+  const [trigger, setTrigger] = useState(false);
 
   useEffect(() => {
     setUpdatedQuote(props.quote);
     setUpdatedKeyedBy(props.keyedBy);
     setClassByMediaType(props.mediaType);
-    /* setUpdatedQuote(handleStringLength(props.quote, 50));
-    setUpdatedKeyedBy(handleStringLength(props.keyedBy, 25)); */
     dateToString();
   }, []);
 
-
-  
   const setClassByMediaType = (mediaType) => {
     switch (mediaType) {
       case "music":
@@ -56,7 +46,6 @@ const QuoteRowComponent = (props) => {
         setMTClassName("user-quote-box default-quote");
     }
   };
-
 
   const dateToString = () => {
     let date = new Date(props.createdAt);
@@ -84,9 +73,8 @@ const QuoteRowComponent = (props) => {
   };
 
   const editPopup = () => {
-
-        setTrigger(true);
-  }
+    setTrigger(true);
+  };
 
   return (
     <div className={mtClassName}>
@@ -130,15 +118,3 @@ const QuoteRowComponent = (props) => {
 };
 
 export default QuoteRowComponent;
-/* 
-
- <tr>
-   <td scope="row" data-label="#">
-     {props.index + 1}
-   </td>
-   <td data-label="Keyed by">{updatedKeyedBy}</td>
-   <td data-label="Quote">
-     <p className="word-wrap2">{updatedQuote}</p>
-   </td>
-   <td data-label="Upload date">{props.createdAt}</td>
- </tr>; */

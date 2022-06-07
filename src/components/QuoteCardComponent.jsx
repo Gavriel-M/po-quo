@@ -5,8 +5,8 @@ import { useDispatch } from "react-redux";
 import jwt from "jwt-decode";
 import axios from "axios";
 
-// import "./quoteCard2.css";
-import "./style.css";
+
+import "../style/style.css";
 import "../style/mediaSpecifiedColors.css"
 import "../style/quotes.css";
 import { useEffect, useState } from "react";
@@ -112,10 +112,9 @@ const QuoteCardComponent = (props) => {
   };
 
   const handleLike = () => {
-    // let url = `/quotes/like/${props.id}`
 
     axios
-      .post(url /* , { params: { quoteId: props.id } } */)
+      .post(url)
       .then((res) => {
         if (res.data.status === "Liked") {
           setLikeState("Liked");
@@ -188,73 +187,10 @@ const QuoteCardComponent = (props) => {
           {likeState} {likesAmount}
         </button>
 
-        {/* <div className={randomCircle}></div> */}
+      
       </div>
     </div>
   );
 };
 
 export default QuoteCardComponent;
-
-/* 
-<div class="container">
-  <div class="card">
-    <div class="title">
-      <h1>Umur Köse</h1>
-      <h2>"Frontend Developer"</h2>
-    </div>
-    <div class="content">
-      <div class="social">
-        <i class="fab fa-codepen"></i>
-        <a href="https://codepen.io/umurkose/" target="_blank">
-          codepen.io/umurkose
-        </a>
-      </div>
-
-      <div class="social">
-        <i class="fab fa-linkedin"></i>
-        <a href="https://www.linkedin.com/in/bada55-umurkose" target="_blank">
-          linkedin.com/in/umurkose
-        </a>
-      </div>
-
-      <div class="social">
-        <i class="fas fa-globe-europe"></i>
-        <a href="https://umurkose.com" target="_blank">
-          umurkose.com
-        </a>
-      </div>
-    </div>
-    <div class="circle"></div>
-  </div>
-</div>;
- */
-
-/* 
-
-  return (
-    <div className={randomColor}>
-      <div className="quote_source">
-        <a className="source_link" href={props.link} target="_blank">
-          {props.source}
-        </a>
-      </div>
-      <p className="media_type">{props.mediaType}</p>
-      <h2 className="quote">{props.quote}</h2>
-      <p className="extend_quote">
-        <button className="card__link" onClick={extend}>
-          Extend
-        </button>
-        <PopUpComponent trigger={trigger} setTrigger={setTrigger}>
-          <h3>Quote details</h3>
-          <h4>Quote : {props.quote}</h4>
-          <h4>Keyed By : {props.keyedBy}</h4>
-          <h4>Quote link : {props.link}</h4>
-          <h4>Quote source : {props.source}</h4>
-          <h4>Media type : {props.mediaType}</h4>
-          <h4>Language : {props.language}</h4>
-          <h4>Uploaded by : {props.createdBy}</h4>
-        </PopUpComponent>
-      </p>
-    </div>
-  ); */

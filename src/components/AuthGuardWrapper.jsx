@@ -1,15 +1,10 @@
 import { useSelector } from "react-redux";
-import {
-  Navigate,
-  useLocation,
-  Outlet,
-} from "react-router-dom";
-
+import { Navigate, useLocation, Outlet } from "react-router-dom";
 
 const AuthGuardWrapper = () => {
   const location = useLocation();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
-  
+
   return loggedIn ? (
     <Outlet />
   ) : (

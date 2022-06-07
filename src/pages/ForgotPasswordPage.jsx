@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import emailSchema from "../validation/email.validation";
 import Joi from "joi-browser";
 import axios from "axios";
-import "../style/custom.css";
 import "../style/forgotPassword.css";
 
 const ForgotPasswordPage = () => {

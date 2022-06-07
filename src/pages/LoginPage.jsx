@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
-import "../components/style.css";
+import "../style/style.css";
 import "../style/login.css"
 import loginImg from "../images/login-transp.png";
 import axios from "axios";

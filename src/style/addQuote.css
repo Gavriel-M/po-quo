@@ -54,6 +54,7 @@
   min-width: 340px;
   max-width: 540px;
   margin: 24px 48px;
+  align-self: center;
 }
 
 .add-quote-btn-container {
@@ -120,7 +121,7 @@
 
 @media only screen and (max-width: 1270px) {
   .add-quote-page {
-  padding: 40px 24px;
+  padding: 40px 12px 80px 8px;
   min-height: calc(100vh - 40px);
 }
 }

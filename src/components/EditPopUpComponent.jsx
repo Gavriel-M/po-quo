@@ -2,7 +2,7 @@ import Joi from "joi-browser";
 import { useState } from "react";
 import quoteSchema from "../validation/quote.validation";
 import axios from "axios";
-import "./style.css";
+import "../style/style.css";
 import "../style/userQuotes.css";
 import "../style/mediaSpecifiedColors.css";
 
@@ -194,7 +194,14 @@ const EditPopUpComponent = (props) => {
             setDeleteVerification(event.target.value);
           }}
         />
-        {deleteErr ? <span className="cust-error">{deleteErr}</span> : <br />}
+        {deleteErr ? (
+          <span className="delete-quote-err">{deleteErr}</span>
+        ) : (
+          <span>
+            <br />
+
+          </span>
+        )}
 
         <button className="delete-quote-btn">Delete</button>
       </form>
