@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Joi from "joi-browser";
 import passwordSchema from "../validation/password.validation";
-import "../style/resetPassword.css"
+import ErrorPopupComponent from "../components/ErrorPopupComponent";
+import "../style/resetPassword.css";
 
 const ResetPasswordPage = (props) => {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [errMsg, setErrMsg] = useState("");
+  const [resetPWErr, setResetPWErr] = useState("");
+  const [trigger, setTrigger] = useState(false);
   const params = useParams();
 
   useEffect(() => {}, []);
@@ -27,18 +29,25 @@ const ResetPasswordPage = (props) => {
     const { error } = validatedValue;
     if (error) {
       console.log(error);
-      setErrMsg("Passwords do not match or is not up to website standards");
+      setResetPWErr(
+        "Passwords do not match or are not up to website standards"
+      );
+      setTrigger(true);
     } else {
       const link = `/users/passwordrecovery/${params.usermail}/${params.token}`;
       console.log("Joi ok", link);
       axios
         .post(link, { password })
         .then((res) => {
-            console.log("response : ", res);
-            console.log("password changes successfully");
+          console.log("response : ", res);
+          console.log("password changes successfully");
         })
         .catch((err) => {
-            console.log("error : ", err);
+          console.log("error : ", err);
+          setResetPWErr(
+            "Server error, please try again."
+          );
+          setTrigger(true);
         });
     }
   };
@@ -83,11 +92,11 @@ const ResetPasswordPage = (props) => {
               }}
             />
           </div>
-          {errMsg ? (
+          {/* {errMsg ? (
             <span className="cust-error"> {errMsg}</span>
           ) : (
             <br />
-          )}
+          )} */}
           <div className="password-reset-btn-container">
             <button type="submit" className="password-reset-btn">
               Set Password
@@ -95,6 +104,9 @@ const ResetPasswordPage = (props) => {
           </div>
         </form>
       </div>
+      <ErrorPopupComponent trigger={trigger} setTrigger={setTrigger}>
+        {resetPWErr}
+      </ErrorPopupComponent>
     </div>
   );
 };

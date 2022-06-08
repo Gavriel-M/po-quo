@@ -26,13 +26,8 @@ const UserQuotesPage = () => {
       })
       .catch((error) => {
         console.log("Error : ", error);
-        setQuotesArr([
-          {
-            keyedBy: "No quotes yet",
-            quote: "",
-            createdAt: 0,
-          },
-        ]);
+        setQuotesArr([]);
+        setLoaded(true);
       });
   }, [, dataChanged]);
 

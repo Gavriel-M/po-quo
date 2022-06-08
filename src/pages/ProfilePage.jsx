@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 
 import updateUserSchema from "../validation/userupdate.validation";
 import QuoteRowComponent from "../components/QuoteRowComponent";
+import ErrorPopupComponent from "../components/ErrorPopupComponent";
 import loadSvg from "../images/Loading.svg";
 import axios from "axios";
 import Joi from "joi-browser";
@@ -18,10 +19,12 @@ const ProfilePage = () => {
   const [creatorAccount, setCreatorAccount] = useState(false);
   const [updatedCreatedAt, setUpdatedCreatedAt] = useState("");
 
-  const [firstNameErr, setFirstNameErr] = useState("");
+  const [trigger, setTrigger] = useState(false);
+  const [profileErr, setProfileErr] = useState("");
+/*   const [firstNameErr, setFirstNameErr] = useState("");
   const [lastNameErr, setLastNameErr] = useState("");
   const [userNameErr, setUserNameErr] = useState("");
-  const [emailErr, setEmailErr] = useState("");
+  const [emailErr, setEmailErr] = useState(""); */
 
   useEffect(() => {
     axios
@@ -69,10 +72,11 @@ const ProfilePage = () => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
 
-    setFirstNameErr("");
+    setProfileErr("");
+    /* setFirstNameErr("");
     setLastNameErr("");
     setUserNameErr("");
-    setEmailErr("");
+    setEmailErr(""); */
 
     const validatedValue = Joi.validate(
       {
@@ -90,25 +94,23 @@ const ProfilePage = () => {
     if (error) {
       switch (error.details[0].context.label) {
         case "firstName":
-          setFirstNameErr(
-            "First name field must contain at least 2 characters"
-          );
+          setProfileErr("First name field must contain at least 2 characters");
           console.log("First name field must contain at least 2 characters");
           break;
         case "lastName":
-          setLastNameErr("Last name field must contain at least 2 characters");
+          setProfileErr("Last name field must contain at least 2 characters");
           console.log("Last name field must contain at least 2 characters");
           break;
         case "userName":
-          setUserNameErr("User name field must contain at least 2 characters");
+          setProfileErr("User name field must contain at least 2 characters");
           console.log("User name field must contain at least 2 characters");
           break;
         case "email":
-          setEmailErr("Email field must be a valid email address");
+          setProfileErr("Email field must be a valid email address");
           console.log("Email field must be a valid email address");
           break;
       }
-
+      setTrigger(true);
       return console.log(error);
     } else {
       console.log("Joi ok");
@@ -125,6 +127,8 @@ const ProfilePage = () => {
         })
         .catch((err) => {
           console.log(err);
+          setProfileErr("Server error, Please try again.");
+          setTrigger(true);
         });
     }
   };
@@ -151,13 +155,13 @@ const ProfilePage = () => {
                   setFirstName(event.target.value);
                 }}
               />
-              {firstNameErr ? (
+              {/* {firstNameErr ? (
                 <span className="cust-error">
                   {firstNameErr}
                 </span>
               ) : (
                 <span></span>
-              )}
+              )} */}
             </div>
             <div className="profile-field">
               <label className="" htmlFor="lastName">
@@ -172,11 +176,11 @@ const ProfilePage = () => {
                   setLastName(event.target.value);
                 }}
               />
-              {lastNameErr ? (
+              {/*  {lastNameErr ? (
                 <span className="cust-error">{lastNameErr}</span>
               ) : (
                 <span></span>
-              )}
+              )} */}
             </div>
             <div className="profile-field">
               <label className="" htmlFor="userName">
@@ -191,11 +195,11 @@ const ProfilePage = () => {
                   setUserName(event.target.value);
                 }}
               />
-              {userNameErr ? (
+              {/*  {userNameErr ? (
                 <span className="cust-error">{userNameErr}</span>
               ) : (
                 <span></span>
-              )}
+              )} */}
             </div>
             <div className="profile-field">
               <label className="" htmlFor="email">
@@ -210,11 +214,11 @@ const ProfilePage = () => {
                   setEmail(event.target.value);
                 }}
               />
-              {emailErr ? (
+              {/*  {emailErr ? (
                 <span className="cust-error">{emailErr}</span>
               ) : (
                 <span></span>
-              )}
+              )} */}
             </div>
             <div className="created-at-field">
               <label className="">Created At : {updatedCreatedAt}</label>
@@ -225,6 +229,9 @@ const ProfilePage = () => {
             </div>
           </form>
         </div>
+        <ErrorPopupComponent trigger={trigger} setTrigger={setTrigger}>
+          {profileErr}
+        </ErrorPopupComponent>
       </div>
     );
   };
