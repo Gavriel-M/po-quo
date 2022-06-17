@@ -1,9 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import QuoteRowComponent from "../components/QuoteRowComponent";
 import loadSvg from "../images/Loading.svg";
 import axios from "axios";
-
 
 import "../style/userQuotes.css";
 
@@ -29,7 +28,7 @@ const UserQuotesPage = () => {
         setQuotesArr([]);
         setLoaded(true);
       });
-  }, [, dataChanged]);
+  }, [ , dataChanged]);
 
   useEffect(() => {
     if (quotesArr.length > 0) {

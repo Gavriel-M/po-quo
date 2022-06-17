@@ -1,5 +1,4 @@
 import { useState } from "react";
-import addImage from "../images/add-a-quote.png";
 import quoteSchema from "../validation/quote.validation";
 import Joi from "joi-browser";
 import { useNavigate } from "react-router-dom";
@@ -22,16 +21,8 @@ const AddQuotePage = (props) => {
   const token = localStorage.getItem("tokenKey");
   const user = jwt(token);
 
-  // error
-
   const [trigger, setTrigger] = useState(false);
   const [addQuoteErr, setAddQuoteErr] = useState("");
-  /* const [mediaTypeErr, setMediaTypeErr] = useState("");
-  const [languageErr, setLanguageErr] = useState("");
-  const [quoteErr, setQuoteErr] = useState("");
-  const [keyedByErr, setKeyedByErr] = useState("");
-  const [linkErr, setLinkErr] = useState("");
-  const [sourceErr, setSourceErr] = useState(""); */
 
   const handleKeyedBy = (event) => {
     setKeyedBy(event.target.value);
@@ -60,12 +51,6 @@ const AddQuotePage = (props) => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
     setAddQuoteErr("");
-    /* setMediaTypeErr("");
-    setLanguageErr("");
-    setQuoteErr("");
-    setLinkErr("");
-    setSourceErr("");
-    setKeyedByErr(""); */
 
     const createdBy = user.userName;
 
@@ -99,25 +84,20 @@ const AddQuotePage = (props) => {
       switch (error.details[0].context.label) {
         case "quote":
           setAddQuoteErr("Quote field must contain at least 2 characters");
-          console.log("Quote field must contain at least 2 characters");
           break;
         case "keyedBy":
           setAddQuoteErr("Keyed-by field is mendatory");
-          console.log("Keyed-by field is mendatory");
           break;
         case "source":
           setAddQuoteErr("Source field must contain at least 2 characters");
-          console.log("Source field must contain at least 2 characters");
           break;
         case "link":
           setAddQuoteErr("Link field is mendatory");
-          console.log("Link field is mendatory");
           break;
       }
       setTrigger(true);
       return;
     } else {
-      console.log("Joi ok");
       axios
         .post("/quotes/newquote", {
           quote,
@@ -129,14 +109,11 @@ const AddQuotePage = (props) => {
           createdBy,
         })
         .then((res) => {
-          console.log("res", res.data.msg);
-          console.log("res::", res.data);
           navigate("/quotes");
         })
         .catch((err) => {
           if (err.response) {
-            console.log(err.response.data);
-            setAddQuoteErr("unknown error, Please try again.")
+            setAddQuoteErr("Server error : Please try again.");
             setTrigger(true);
           }
         });
@@ -155,28 +132,16 @@ const AddQuotePage = (props) => {
               <label className="" htmlFor="quote">
                 "Quote"
               </label>
-              <input
-                type="text"
+              <textarea
+                
                 id="quote"
                 className=""
                 value={quote}
                 onChange={handleQuote}
               />
-              {/* {quoteErr ? (
-                <span className="cust-error">{quoteErr}</span>
-              ) : (
-                <br />
-              )} */}
             </div>
 
             <div className="add-quote-field">
-              {/* {mediaTypeErr ? (
-                <span className="cust-error">{mediaTypeErr}</span>
-              ) : (
-                <span>
-                  <br />
-                </span>
-              )} */}
               <div className="box">
                 <div className="select">
                   <select
@@ -197,14 +162,6 @@ const AddQuotePage = (props) => {
             </div>
 
             <div className="add-quote-field">
-              {/* {languageErr ? (
-                <span className="cust-error">{languageErr}</span>
-              ) : (
-                <span>
-                  <br />
-                </span>
-              )} */}
-
               <div className="box">
                 <div className="select">
                   <select
@@ -234,11 +191,6 @@ const AddQuotePage = (props) => {
                 value={keyedBy}
                 onChange={handleKeyedBy}
               />
-              {/* {keyedByErr ? (
-                <span className="cust-error">{keyedByErr}</span>
-              ) : (
-                <br />
-              )} */}
             </div>
 
             <div className="add-quote-field">
@@ -253,11 +205,6 @@ const AddQuotePage = (props) => {
                 value={source}
                 onChange={handleSource}
               />
-              {/* {sourceErr ? (
-                <span className="cust-error">{sourceErr}</span>
-              ) : (
-                <br />
-              )} */}
             </div>
 
             <div className="add-quote-field">
@@ -271,7 +218,6 @@ const AddQuotePage = (props) => {
                 value={link}
                 onChange={handleLink}
               />
-              {/* {linkErr ? <span className="cust-error">{linkErr}</span> : <br />} */}
             </div>
 
             <div className="add-quote-btn-container">

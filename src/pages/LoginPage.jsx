@@ -4,15 +4,12 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 
 import "../style/style.css";
 import "../style/login.css"
-import loginImg from "../images/login-transp.png";
 import axios from "axios";
 import Joi from "joi-browser";
 import jwt from "jwt-decode";
 
-import pqLogo from "../images/popular-quotes-mobile.png";
-
 import loginSchema from "../validation/login.validation";
-import { login, logout, updateToken } from "../store/authSlice";
+import { login, logout } from "../store/authSlice";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +25,6 @@ const LoginPage = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log("Location hook : ", location);
     if (location.state) {
       if (location.state.signupEmail && location.state.signupPassword) {
         setEmail(location.state.signupEmail);
@@ -66,10 +62,6 @@ const LoginPage = () => {
         return setPasswordErr("Invalid password");
       }
 
-      let joiInvalidField = error.details[0].path[0];
-      console.log(
-        `${joiInvalidField} field does not follow the specified rules.`
-      );
     } else {
       axios
         .post("/users/login", {
@@ -80,9 +72,7 @@ const LoginPage = () => {
           const token = res.data.token;
           const user = jwt(token);
           dispatch(login());
-          console.log("Logged in successfully! ", user);
           localStorage.clear();
-
           localStorage.setItem("tokenKey", token);
           if (location.state && location.state.previousPath) {
             navigate(location.state.previousPath);
@@ -93,7 +83,6 @@ const LoginPage = () => {
         .catch((error) => {
           localStorage.clear();
           dispatch(logout());
-          console.log("redux : ", loggedInRedux);
           if (!error.response) {
             return setServerErr("Email and password do not match");
           }

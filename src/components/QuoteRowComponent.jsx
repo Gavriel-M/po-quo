@@ -1,6 +1,3 @@
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 
 import "../style/userQuotes.css";
 import "../style/editQuotePopup.css";
@@ -62,7 +59,7 @@ const QuoteRowComponent = (props) => {
 
     setUpdatedCreatedAt(`${day}/${month}/${year}`);
   };
-
+/* 
   const handleStringLength = (string, limit) => {
     if (string.length > limit) {
       let result = string.slice(0, limit);
@@ -70,7 +67,7 @@ const QuoteRowComponent = (props) => {
       return result;
     }
     return string;
-  };
+  }; */
 
   const editPopup = () => {
     setTrigger(true);

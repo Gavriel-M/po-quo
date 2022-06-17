@@ -1,10 +1,5 @@
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-
 import jwt from "jwt-decode";
 import axios from "axios";
-
 
 import "../style/style.css";
 import "../style/mediaSpecifiedColors.css"
@@ -13,8 +8,6 @@ import { useEffect, useState } from "react";
 import PopUpComponent from "./PopUpComponent";
 
 const QuoteCardComponent = (props) => {
-  const [randomCircle, setRandomCircle] = useState("");
-  const [matchingButton, setMatchingButton] = useState("");
   const [likeButton, setLikeButton] = useState("");
   const [mtClassName, setMTClassName] = useState("");
   const [fontClassName, setFontClassName] = useState("");
@@ -24,21 +17,15 @@ const QuoteCardComponent = (props) => {
 
   const [alreadyLiked, setAlreadyLiked] = useState("");
   const [likesAmount, setLikesAmount] = useState("");
-  /* 
-    const alreadyLiked = props.likes.find(
-      (userWhoLiked) => userWhoLiked === userName
-    ); */
 
-  const [randomNum, setRandomNum] = useState(1);
+
   const [trigger, setTrigger] = useState(false);
   const [quote, setQuote] = useState("");
   const [keyedBy, setKeyedBy] = useState("");
 
   const [url, setUrl] = useState(`/quotes/like/${props.id}`);
-  // const [alreadyLiked, setAlreadyLiked] = useState("");
 
   useEffect(() => {
-    setRandomNum(Math.floor(Math.random() * 5) + 1);
 
     setAlreadyLiked(
       props.likes.find((userWhoLiked) => userWhoLiked == user.userName)
@@ -55,10 +42,10 @@ const QuoteCardComponent = (props) => {
     handleLikeButtonStatus();
   }, [alreadyLiked]);
 
-  useEffect(() => {
+/*   useEffect(() => {
     setRandomCircle("circle circle" + randomNum);
     setMatchingButton("expand button button-" + randomNum);
-  }, [randomNum]);
+  }, [randomNum]); */
 
   const setFont = (language) => {
     switch (language) {
@@ -124,7 +111,6 @@ const QuoteCardComponent = (props) => {
           setLikeButton("like-btn like-quote");
         }
         setLikesAmount(res.data.likeCount);
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -161,7 +147,9 @@ const QuoteCardComponent = (props) => {
             </div>
             <div className="popup-row">
               <h4 className="popup-sec-header">Quote link </h4>
-              <span className="popup-content">{props.link}</span>
+              <a className="popup-content" href={props.link} target="_blank">
+                {props.link}
+              </a>
             </div>
             <div className="popup-row">
               <h4 className="popup-sec-header">Quote source </h4>
@@ -186,8 +174,6 @@ const QuoteCardComponent = (props) => {
         <button type="button" className={likeButton} onClick={handleLike}>
           {likeState} {likesAmount}
         </button>
-
-      
       </div>
     </div>
   );

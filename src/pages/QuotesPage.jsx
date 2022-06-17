@@ -1,6 +1,4 @@
-import { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import QuoteCardComponent from "../components/QuoteCardComponent";
 
 import loadSvg from "../images/Loading.svg";
@@ -18,7 +16,22 @@ const QuotesPage = () => {
         setQuotesArr(res.data);
       })
       .catch((error) => {
-        console.log("Error : ", error);
+        setQuotesArr([
+          
+          {
+            _id: "404",
+            quote: "Server error : Please try to refresh the page.",
+            keyedBy: "Server Error!",
+            language: "Error",
+            source: "Server",
+            link: "Please refresh the page",
+            mediaType: "Error",
+            createdBy: "Admin",
+            likes: [],
+            createdAt: "The dawn of time.",
+            __v: 0,
+          },
+        ]);
       });
   }, []);
 

@@ -4,7 +4,6 @@ const PopUpComponent = (props) => {
 
     const editPopup = () => {
       props.setTrigger(false);
-      console.log(props);
     };
 
     return props.trigger ? (

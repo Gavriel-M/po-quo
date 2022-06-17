@@ -103,6 +103,26 @@
 }
 
 
+.add-quote-box textarea {
+  resize: none;
+  padding: 4px;
+  height: 160px;
+  border: 4px solid black;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 black;
+  background-color: #dfd3c3;
+  transition: 0.2s;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+}
+
+.add-quote-box textarea:focus {
+  background-color: #f0ece3;
+  border: 4px solid black;
+  box-shadow: 4px 4px 0 black;
+}
+
 @media only screen and (max-width: 515px) {
 .add-quote-flex{
   font-size: 36px;

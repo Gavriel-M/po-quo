@@ -1,19 +1,16 @@
 import { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import "../style/style.css";
 import "../style/signup.css";
-import signupImg from "../images/signup-transp.png";
 
 import axios from "axios";
 import Joi from "joi-browser";
 
-import pqLogo from "../images/transp-po-quo.png";
-
 import signupSchema from "../validation/signup.validation";
 import ErrorPopupComponent from "../components/ErrorPopupComponent";
-import { login, logout, updateToken } from "../store/authSlice";
+import {logout } from "../store/authSlice";
 
 const SignupPage = () => {
   const [email, setEmail] = useState("");
@@ -30,6 +27,7 @@ const SignupPage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   /* 
   useEffect(() => {
     emailRef.current.focus();

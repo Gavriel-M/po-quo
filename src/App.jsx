@@ -43,27 +43,5 @@ function App() {
   );
 }
 
-/* function App() {
-  return (
-    <div className="App">
-      <NavbarComponent></NavbarComponent>
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" />} exact />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route
-          path="/quotes"
-          element={
-            <AuthGuardRoute>
-              <QuotesPage />
-            </AuthGuardRoute>
-          }
-        />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </div>
-  );
-} */
 
 export default App;

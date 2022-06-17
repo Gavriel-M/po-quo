@@ -28,25 +28,20 @@ const ResetPasswordPage = (props) => {
 
     const { error } = validatedValue;
     if (error) {
-      console.log(error);
       setResetPWErr(
         "Passwords do not match or are not up to website standards"
       );
       setTrigger(true);
     } else {
       const link = `/users/passwordrecovery/${params.usermail}/${params.token}`;
-      console.log("Joi ok", link);
       axios
         .post(link, { password })
         .then((res) => {
-          console.log("response : ", res);
-          console.log("password changes successfully");
+          setResetPWErr("Password changed successfully, Login page will now open.");
         })
         .catch((err) => {
           console.log("error : ", err);
-          setResetPWErr(
-            "Server error, please try again."
-          );
+          setResetPWErr("Server error, please try again.");
           setTrigger(true);
         });
     }
@@ -92,11 +87,6 @@ const ResetPasswordPage = (props) => {
               }}
             />
           </div>
-          {/* {errMsg ? (
-            <span className="cust-error"> {errMsg}</span>
-          ) : (
-            <br />
-          )} */}
           <div className="password-reset-btn-container">
             <button type="submit" className="password-reset-btn">
               Set Password

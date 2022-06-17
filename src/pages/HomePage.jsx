@@ -1,12 +1,9 @@
-import pqimg from "../images/popular-quotes-trsp.png";
-import mobileimg from "../images/popular-quotes-mobile.png";
+
 import "../style/style.css";
 import "../style/home.css";
-import loadSvg from "../images/Loading.svg";
 
 import popularImg from "../images/popular-home.png";
 import quotesImg from "../images/quotes-home.png";
-import homeSvg from "../images/home-vector.svg";
 import pqLogo from "../images/pq-logo.png";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
@@ -35,7 +32,7 @@ const HomePage = () => {
         setLatestQuote(res.data[0]);
       })
       .catch((error) => {
-        console.log("Error : ", error);
+        setLatestQuote("Whoops, Something went wrong. ");
       });
   }, [loggedIn, ]);
 

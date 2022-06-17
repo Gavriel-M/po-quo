@@ -1,6 +1,7 @@
 import Joi from "joi-browser";
 import { useState } from "react";
 import quoteSchema from "../validation/quote.validation";
+import ErrorPopupComponent from "./ErrorPopupComponent";
 import axios from "axios";
 import "../style/style.css";
 import "../style/userQuotes.css";
@@ -9,26 +10,26 @@ import "../style/mediaSpecifiedColors.css";
 const EditPopUpComponent = (props) => {
   const [quote, setQuote] = useState(props.quote);
   const [keyedBy, setKeyedBy] = useState(props.keyedBy);
-  const [language, setLanguage] = useState(props.language);
   const [source, setSource] = useState(props.source);
   const [link, setLink] = useState(props.link);
-  const [mediaType, setMediaType] = useState(props.mediaType);
   const [_id, set_id] = useState(props.id);
   const [url, setUrl] = useState(`/quotes/${props.id}`);
   const [deleteVerification, setDeleteVerification] = useState("");
   const [deleteErr, setDeleteErr] = useState("");
 
+  const [errTrigger, setErrTrigger] = useState(false);
+  const [editPopupErr, setEditPopupErr] = useState("");
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log(props.id);
+    setEditPopupErr("");
+
     const validatedValue = Joi.validate(
       {
         quote,
         keyedBy,
-        language,
         source,
         link,
-        mediaType,
       },
       quoteSchema,
       { abortEarly: false }
@@ -36,25 +37,40 @@ const EditPopUpComponent = (props) => {
 
     const { error } = validatedValue;
     if (error) {
-      return console.log(error);
+      switch (error.details[0].context.label) {
+        case "quote":
+          setEditPopupErr("Quote field must contain at least 2 characters");
+          break;
+        case "keyedBy":
+          setEditPopupErr("Keyed-by field is mendatory");
+          break;
+        case "source":
+          setEditPopupErr("Source field must contain at least 2 characters");
+          break;
+        case "link":
+          setEditPopupErr("Link field is mendatory");
+          break;
+      }
+      setErrTrigger(true);
+      return;
     } else {
-      console.log("Joi ok");
       axios
         .put(url, {
           quote,
           keyedBy,
-          language,
           source,
           link,
-          mediaType,
         })
         .then((res) => {
-          console.log(res);
+          
           props.setDataChanged(!props.dataChanged);
           props.setTrigger(false);
         })
         .catch((err) => {
-          console.log(err);
+          setEditPopupErr(
+            `Server error : Please try again.`
+          );
+          setErrTrigger(true);
         });
     }
   };
@@ -63,7 +79,7 @@ const EditPopUpComponent = (props) => {
     event.preventDefault();
     setDeleteErr("");
     const firstWord = quote.split(" ")[0];
-    console.log(firstWord);
+    
     if (deleteVerification == firstWord) {
       axios
         .delete(url)
@@ -74,10 +90,11 @@ const EditPopUpComponent = (props) => {
           }
         })
         .catch((err) => {
-          console.log(err);
+
+          setDeleteErr(`Server error : Please try again`);
         });
     } else {
-      console.log("Please enter the first word correctly");
+      
       setDeleteErr("Please enter the first word correctly");
     }
   };
@@ -144,34 +161,7 @@ const EditPopUpComponent = (props) => {
             }}
           />
         </div>
-        <div className="edit-quote-field">
-          <label className="" htmlFor="mediaType">
-            Media type
-          </label>
-          <input
-            type="text"
-            id="mediaType"
-            className=""
-            value={mediaType}
-            onChange={(event) => {
-              setMediaType(event.target.value);
-            }}
-          />
-        </div>
-        <div className="edit-quote-field">
-          <label className="" htmlFor="language">
-            Language
-          </label>
-          <input
-            type="text"
-            id="language"
-            className=""
-            value={language}
-            onChange={(event) => {
-              setLanguage(event.target.value);
-            }}
-          />
-        </div>
+
         <div className="edit-quote-field">
           <label className="">Created At : {props.createdAt}</label>
         </div>
@@ -199,12 +189,14 @@ const EditPopUpComponent = (props) => {
         ) : (
           <span>
             <br />
-
           </span>
         )}
 
         <button className="delete-quote-btn">Delete</button>
       </form>
+      <ErrorPopupComponent trigger={errTrigger} setTrigger={setErrTrigger}>
+        {editPopupErr}
+      </ErrorPopupComponent>
     </div>
   );
 };

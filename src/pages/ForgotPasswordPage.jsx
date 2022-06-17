@@ -1,13 +1,19 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import emailSchema from "../validation/email.validation";
 import Joi from "joi-browser";
 import axios from "axios";
 import "../style/forgotPassword.css";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPasswordPage = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
-    const [btnClickResponse, setBtnClickResponse] = useState("");
-    const [joiErr, setJoiErr] = useState("");
+  const [btnClickResponse, setBtnClickResponse] = useState("");
+  const [joiErr, setJoiErr] = useState("");
+
+  const navWhenDone = () => {
+    navigate("/home");
+  };
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
@@ -21,18 +27,17 @@ const ForgotPasswordPage = () => {
 
     const { error } = validatedValue;
     if (error) {
-      setJoiErr("Invalid email")
-      return console.error(error);
+      setJoiErr("Invalid email");
+      return;
     } else {
       setBtnClickResponse("Email was sent successfully!");
-      console.log("Joi ok");
       axios
         .post("/users/resetpassword", { email })
         .then((res) => {
-          console.log(res.data);
+          setTimeout(navWhenDone, 2500);
         })
         .catch((err) => {
-          console.error(err);
+          setTimeout(navWhenDone, 2500);
         });
     }
   };
@@ -51,8 +56,6 @@ const ForgotPasswordPage = () => {
           </label>
           <input
             type="email"
-            readonly
-            className=" "
             id="email"
             placeholder="Email"
             value={email}
@@ -60,7 +63,7 @@ const ForgotPasswordPage = () => {
               setEmail(event.target.value);
             }}
           />
-          
+
           <div className="msg-container">
             {btnClickResponse ? (
               <span className="success-msg"> {btnClickResponse}</span>
