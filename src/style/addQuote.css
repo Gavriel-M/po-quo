@@ -115,6 +115,8 @@
   transition: 0.2s;
   font-family: "Oswald", sans-serif;
   font-weight: 400;
+  font-size: 32px;
+  line-height: 1.2;
 }
 
 .add-quote-box textarea:focus {

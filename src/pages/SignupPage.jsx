@@ -46,11 +46,15 @@ const SignupPage = () => {
   };
 
   const handleFirstName = (event) => {
-    setFirstName(event.target.value);
+    let firstNameStr = event.target.value;
+    let capitalizedFirstName = firstNameStr.charAt(0).toUpperCase() + firstNameStr.slice(1);
+      setFirstName(capitalizedFirstName);
   };
 
   const handleLastName = (event) => {
-    setLastName(event.target.value);
+    let lastNameStr = event.target.value;
+    let capitalizedLastName = lastNameStr.charAt(0).toUpperCase() + lastNameStr.slice(1);
+    setLastName(capitalizedLastName);
   };
 
   const handleUserName = (event) => {

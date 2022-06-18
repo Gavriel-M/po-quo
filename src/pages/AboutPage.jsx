@@ -12,7 +12,7 @@ const AboutPage = () => {
             Hello and welcome to popular quotes! <br />
             This website is dedicated solely to sharing popular, fun, interesting and inspiring quotes! <br />
             <br />
-            Popular quotes was built using a React front alongside a Node.js - express back end and designed using Figma. 
+            Popular quotes was designed using Figma and built with a React front alongside a Node.js - express back end.
           </div>
         </div>
       </div>

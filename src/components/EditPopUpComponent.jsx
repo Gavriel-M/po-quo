@@ -109,8 +109,7 @@ const EditPopUpComponent = (props) => {
           <label className="" htmlFor="quote">
             Quote
           </label>
-          <input
-            type="text"
+          <textarea
             id="quote"
             className=""
             value={quote}

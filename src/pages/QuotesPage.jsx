@@ -13,7 +13,7 @@ const QuotesPage = () => {
     axios
       .get("/quotes/allquotes")
       .then((res) => {
-        setQuotesArr(res.data);
+        setQuotesArr(res.data.reverse());
       })
       .catch((error) => {
         setQuotesArr([
