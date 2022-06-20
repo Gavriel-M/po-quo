@@ -156,6 +156,8 @@ const AddQuotePage = (props) => {
                     <option value="cinema-tv">Cinema / TV</option>
                     <option value="proverbs">Proverbs</option>
                     <option value="literature">Literature</option>
+                    <option value="social-media">Social Media</option>
+                    <option value="unknown">Unknown</option>
                   </select>
                 </div>
               </div>
