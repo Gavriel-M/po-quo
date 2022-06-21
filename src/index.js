@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
-import { login, logout, updateToken } from "./store/authSlice";
+import { Provider } from "react-redux";
+import {  logout } from "./store/authSlice";
 
 
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
@@ -15,7 +15,7 @@ import store from "./store/store";
 
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8181/api";
+axios.defaults.baseURL = "https://po-quo.herokuapp.com/api";
 
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem("tokenKey");

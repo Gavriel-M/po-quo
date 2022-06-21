@@ -70,6 +70,7 @@
   flex-direction: column;
   top: 8px;
   right: 8px;
+  height: 48px;
   cursor: pointer;
   border: 4px solid black;
   border-radius: 8px;
@@ -86,6 +87,7 @@
   margin: 8px 0;
   background-color: #000;
   border-radius: 8px;
+  transition: 0.5s;
 }
 .mobile-nav-btn span:nth-child(2) {
   position: absolute;
@@ -163,9 +165,16 @@
     right: 12px;
   }
   .mobile-navbar-active .mobile-nav-btn {
+    height: 38px;
     right: 240px;
   }
+  .mobile-navbar-active .mobile-nav-btn span:nth-child(1) {
+    transform: translateY(10px);
+  }
   .mobile-navbar-active .mobile-nav-btn span:nth-child(2) {
-    right: -290px;
+    /* right: -290px; */
+  }
+  .mobile-navbar-active .mobile-nav-btn span:nth-child(3) {
+    transform: translateY(-10px);
   }
 }
