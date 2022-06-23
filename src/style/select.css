@@ -9,6 +9,7 @@
   border-radius: 8px;
   align-items: center;
   font-family: "Oswald", sans-serif;
+  line-height: 1.25;
   color: #fff;
 }
 
@@ -24,8 +25,9 @@ select {
   padding: 0 14px;
   color: #fff;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 38px;
   font-family: "Oswald", sans-serif;
+  line-height: 1.25;
 }
 
 select::-ms-expand {
@@ -37,7 +39,7 @@ select::-ms-expand {
   display: flex;
   width: 100%;
   height: 80px;
-  line-height: 1;
+  line-height: 1.25;
   background: #C08485;
   overflow: hidden;
   border-radius: 4px;
@@ -45,7 +47,7 @@ select::-ms-expand {
 .select::after {
   content: "\1F847";
   position: absolute;
-  top: 0;
+  top: -4px;
   right: 0;
   padding: 16px 24px;
   background: #C08485;
@@ -61,7 +63,11 @@ select::-ms-expand {
   padding: 16px 28px 16px 20px;
 }
 @media only screen and (max-width: 515px) {
-.box{
+.select::after {
+  content: "V";
+}
+
+  .box{
   min-width: 240px;
 }
 .select {

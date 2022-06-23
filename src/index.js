@@ -15,6 +15,7 @@ import store from "./store/store";
 
 import axios from "axios";
 
+// axios.defaults.baseURL = "http://localhost:8181/api";
 axios.defaults.baseURL = "https://po-quo.herokuapp.com/api";
 
 axios.interceptors.request.use((config) => {
