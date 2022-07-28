@@ -36,15 +36,14 @@
 
 .home-blob {
   position: relative;
-  padding: 96px;
   background: url(../images/home-blob.svg) no-repeat;
 }
 
 .blob-movement {
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 20px;
-  padding: 200px;
+  left: 20px; */
+  padding: 120px 90px 120px 80px;
   background: url(../images/home-blob2.svg) no-repeat;
 }
 

@@ -56,10 +56,11 @@ const HomePage = () => {
         </div>
 
         <div className="home-blob">
-          <div className="blob-movement"></div>
-          <NavLink to={blobBtnLink}>
-            <button className="home-blob-btn">{blobBtnText}</button>
-          </NavLink>
+          <div className="blob-movement">
+            <NavLink to={blobBtnLink}>
+              <button className="home-blob-btn">{blobBtnText}</button>
+            </NavLink>
+          </div>
         </div>
       </div>
 
@@ -80,7 +81,7 @@ const HomePage = () => {
             <h3>news</h3>
           </div>
           <div className="home-boxes-content">
-            Our first version is finally out! 
+            Our first version is finally out!
             <br />
             Check out more information in the 'about us' page.
           </div>
